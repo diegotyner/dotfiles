@@ -1,0 +1,100 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": false,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "file:Home",
+      "color": {
+        "a": 1,
+        "rgb": 15623467
+      }
+    },
+    {
+      "query": "path:Brain  ",
+      "color": {
+        "a": 1,
+        "rgb": 15732671
+      }
+    },
+    {
+      "query": "path:Coding/ML-Study  ",
+      "color": {
+        "a": 1,
+        "rgb": 5425632
+      }
+    },
+    {
+      "query": "path:Coding  ",
+      "color": {
+        "a": 1,
+        "rgb": 4253713
+      }
+    },
+    {
+      "query": "path:Math  ",
+      "color": {
+        "a": 1,
+        "rgb": 3465126
+      }
+    },
+    {
+      "query": "path:Scratch  ",
+      "color": {
+        "a": 1,
+        "rgb": 10585319
+      }
+    },
+    {
+      "query": "path:Reading",
+      "color": {
+        "a": 1,
+        "rgb": 15348806
+      }
+    },
+    {
+      "query": "path:College/Clubs  ",
+      "color": {
+        "a": 1,
+        "rgb": 8328065
+      }
+    },
+    {
+      "query": "path:College  ",
+      "color": {
+        "a": 1,
+        "rgb": 9996581
+      }
+    },
+    {
+      "query": "path:Work  ",
+      "color": {
+        "a": 1,
+        "rgb": 211632
+      }
+    },
+    {
+      "query": "path:Excalidraw ",
+      "color": {
+        "a": 1,
+        "rgb": 5066061
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": false,
+  "textFadeMultiplier": 3,
+  "nodeSizeMultiplier": 1.04427083333333,
+  "lineSizeMultiplier": 0.891145833333333,
+  "collapse-forces": false,
+  "centerStrength": 0.0989583333333333,
+  "repelStrength": 5,
+  "linkStrength": 0.496979166666667,
+  "linkDistance": 103,
+  "scale": 0.3196645656591222,
+  "close": false
+}

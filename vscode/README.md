@@ -1,0 +1,1 @@
+These are some basic configs, but I still need to figure out how to save extensions. Luckily, they offer a *Profile Sync* option that I use to sync setting more easily. Regardless, good to have a backup here I think
