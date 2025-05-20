@@ -2,7 +2,8 @@
 
 # Initialize variables
 MOVE_FILES=false
-DEFAULT_LOCATION="/mnt/c/users/diego/Dropbox/Obsidian_Repo/Starter_Vault/Excalidraw/IMG-Annotation"
+DEFAULT_LOCATION="$HOME/Dropbox/Obsidian_Repo/Starter_Vault/Excalidraw/PDF-Annotation/"
+# DEFAULT_LOCATION="/mnt/c/users/diego/Dropbox/Obsidian_Repo/Starter_Vault/Excalidraw/IMG-Annotation"
 
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do

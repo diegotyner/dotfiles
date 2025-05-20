@@ -5,7 +5,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 vim.g.netrw_browsex_viewer = ''
 
 -- [[ Setting options ]]
@@ -20,20 +20,22 @@ vim.opt.showmode = false -- Don't show the mode, since it's already in the statu
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
--- vim.schedule(function()
---   vim.opt.clipboard = 'unnamedplus'
--- end)
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
 
 vim.opt.showmatch = true
-vim.env.path = '/home/diego/.nvm/versions/node/v22.14.0/bin:/home/diego/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+-- vim.env.path = '/home/diego/.nvm/versions/node/v22.14.0/bin:/home/diego/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set({ 'n', 'v', 'o' }, 'H', '^')
+vim.keymap.set({ 'n', 'v', 'o' }, 'L', '$')
+
+vim.keymap.set({ 'n', 'v' }, '<C-d>', '<C-d>zz')
+vim.keymap.set({ 'n', 'v' }, '<C-u>', '<C-u>zz')
+
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
-
-vim.keymap.set('n', '<a-j>', ':m .+1<cr>==') -- move line up(n)
-vim.keymap.set('n', '<a-j>', ':m .+1<cr>==') -- move line up(n)
 vim.keymap.set('n', '<a-k>', ':m .-2<cr>==') -- move line down(n)
+vim.keymap.set('n', '<a-j>', ':m .+1<cr>==') -- move line up(n)
 vim.keymap.set('v', '<a-j>', ":m '>+1<cr>gv=gv") -- move line up(v)
 vim.keymap.set('v', '<a-k>', ":m '<-2<cr>gv=gv") -- move line down(v)
 
@@ -63,7 +65,6 @@ end, { desc = 'Move char right with boundary checking' })
 --     cache_enabled = 0,
 --   }
 -- end
--- vim.opt.clipboard = 'unnamedplus'
 
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -188,6 +189,64 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+    config = function()
+      local harpoon = require 'harpoon'
+
+      harpoon:setup {
+        settings = {
+          save_on_toggle = true,
+          sync_on_ui_close = true,
+        },
+      }
+
+      -- Telescope integration
+      local conf = require('telescope.config').values
+      local function toggle_telescope(harpoon_files)
+        local file_paths = {}
+        for _, item in ipairs(harpoon_files.items) do
+          table.insert(file_paths, item.value)
+        end
+
+        require('telescope.pickers')
+          .new({}, {
+            prompt_title = 'Harpoon',
+            finder = require('telescope.finders').new_table {
+              results = file_paths,
+            },
+            previewer = conf.file_previewer {},
+            sorter = conf.generic_sorter {},
+          })
+          :find()
+      end
+
+      -- Keymaps
+      local map = vim.keymap.set
+      map('n', '<leader>ha', function()
+        harpoon:list():add()
+      end, { desc = 'Add file to Harpoon' })
+      map('n', '<leader>a', function()
+        harpoon:list():add()
+      end, { desc = 'Add file to Harpoon' })
+      map('n', '<leader>hm', function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end, { desc = 'Toggle Harpoon Menu' })
+      map('n', '<leader>ht', function()
+        toggle_telescope(harpoon:list())
+      end, { desc = 'Open Harpoon in Telescope' })
+
+      -- Jump to specific files
+      for i = 1, 5 do
+        map('n', '<leader>' .. i, function()
+          harpoon:list():select(i)
+        end, { desc = 'Harpoon file ' .. i })
+      end
+    end,
+  },
+
   'ThePrimeagen/vim-be-good',
 
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
@@ -290,7 +349,7 @@ require('lazy').setup({
       spec = {
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>h', group = '[H]arpoon', mode = { 'n', 'v' } },
       },
     },
   },
@@ -585,7 +644,7 @@ require('lazy').setup({
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
           text = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
+            [vim.diagnostic.severity.ERROR] = 'x',
             [vim.diagnostic.severity.WARN] = '󰀪 ',
             [vim.diagnostic.severity.INFO] = '󰋽 ',
             [vim.diagnostic.severity.HINT] = '󰌶 ',
@@ -801,7 +860,8 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'default',
+        -- preset = 'default',
+        preset = 'super-tab',
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -838,31 +898,32 @@ require('lazy').setup({
       fuzzy = { implementation = 'prefer_rust_with_warning' },
 
       -- Shows a signature help window while you type arguments for a function
-      signature = { enabled = true },
+      -- signature = { enabled = true },
+      signature = { enabled = false },
     },
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-    end,
-  },
+  -- { -- You can easily change to a different colorscheme.
+  --   -- Change the name of the colorscheme plugin below, and then
+  --   -- change the command in the config to whatever the name of that colorscheme is.
+  --   --
+  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  --   'folke/tokyonight.nvim',
+  --   priority = 1000, -- Make sure to load this before all the other start plugins.
+  --   config = function()
+  --     ---@diagnostic disable-next-line: missing-fields
+  --     require('tokyonight').setup {
+  --       styles = {
+  --         comments = { italic = false }, -- Disable italics in comments
+  --       },
+  --     }
+  --
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     vim.cmd.colorscheme 'tokyonight-night'
+  --   end,
+  -- },
   -- My Themes
   {
     'projekt0n/github-nvim-theme',
@@ -874,27 +935,27 @@ require('lazy').setup({
         -- ...
       }
 
-      vim.cmd 'colorscheme github_dark'
+      vim.cmd 'colorscheme github_dark_tritanopia'
     end,
   },
-  {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    config = function()
-      vim.cmd 'colorscheme rose-pine'
-    end,
-  },
-  {
-    'sainnhe/everforest',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- Optionally configure and load the colorscheme
-      -- directly inside the plugin declaration.
-      vim.g.everforest_enable_italic = true
-      vim.cmd.colorscheme 'everforest'
-    end,
-  },
+  -- {
+  --   'rose-pine/neovim',
+  --   name = 'rose-pine',
+  --   config = function()
+  --     vim.cmd 'colorscheme rose-pine'
+  --   end,
+  -- },
+  -- {
+  --   'sainnhe/everforest',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     -- Optionally configure and load the colorscheme
+  --     -- directly inside the plugin declaration.
+  --     vim.g.everforest_enable_italic = true
+  --     vim.cmd.colorscheme 'everforest'
+  --   end,
+  -- },
   -- {
   --   "tiagovla/tokyodark.nvim",
   --   opts = {
@@ -945,8 +1006,40 @@ require('lazy').setup({
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
+      -- local diag_signs = { ERROR = '󰅚 ', WARN = '󰀪 ', INFO = '󰋽 ', HINT = '󰌶 ' }
+      -- local my_active_content = function()
+      --   -- ...
+      --   local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75, signs = diag_signs }
+      --   local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
+      --   local git = MiniStatusline.section_git { trunc_width = 40 }
+      --   local diff = MiniStatusline.section_diff { trunc_width = 75 }
+      --   local lsp = MiniStatusline.section_lsp { trunc_width = 75 }
+      --   local filename = MiniStatusline.section_filename { trunc_width = 140 }
+      --   local fileinfo = MiniStatusline.section_fileinfo { trunc_width = 120 }
+      --   local location = MiniStatusline.section_location { trunc_width = 75 }
+      --   local search = MiniStatusline.section_searchcount { trunc_width = 75 }
+      --
+      --   return MiniStatusline.combine_groups {
+      --     { hl = mode_hl, strings = { mode } },
+      --     { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
+      --     '%<', -- Mark general truncate point
+      --     { hl = 'MiniStatuslineFilename', strings = { filename } },
+      --     '%=', -- End left alignment
+      --     { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+      --     { hl = mode_hl, strings = { search, location } },
+      --   }
+      --   -- ...
+      -- end
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      statusline.setup {
+        use_icons = vim.g.have_nerd_font,
+        -- content = {
+        -- Content for active window
+        -- active = my_active_content,
+        -- Content for inactive window(s)
+        -- inactive = nil,
+        -- },
+      }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for

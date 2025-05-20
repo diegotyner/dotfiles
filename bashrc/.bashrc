@@ -115,7 +115,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-eval "$(/home/diego/miniconda3/bin/conda shell.bash hook)"
+# eval "$(/home/diego/miniconda3/bin/conda shell.bash hook)"
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -124,30 +124,32 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # My additions
-alias gotocode="cd /mnt/c/Users/Diego/OneDrive/Documents/Coding"
-alias gotolocal="cd /mnt/c/Users/Diego/Local-Docs/"
-alias gotodiego="cd /mnt/c/Users/Diego"
-alias gotovault="cd /mnt/c/Users/Diego/Dropbox/Obsidian_Repo/Starter_Vault"
 
 alias syncvault="~/sh-utils/sync_and_push.sh"
 
 alias pdf-image="~/sh-utils/pdf-to-img.sh"
 
-move2vault() {
-    mv "$1"  /mnt/c/Users/diego/Dropbox/Obsidian_Repo/Starter_Vault/Excalidraw/PDF-Annotation
-    echo "Moved $1 to your Obsidian vault."
-}
 
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 
+stty -ixon # Makes C-s not freeze terminal, NEEDED for tmux leader remap
 alias devenv="~/sh-utils/tmux_setup.sh"
-stty -ixon
-. "$HOME/.cargo/env"
-
-idea() {
-    /mnt/c/Program\ Files/JetBrains/PyCharm\ 2025.1/bin/pycharm64.exe $1 
-}
+# . "$HOME/.cargo/env"
 
 
+
+
+# Old WSL shortcuts
+# alias gotocode="cd /mnt/c/Users/Diego/OneDrive/Documents/Coding"
+# alias gotolocal="cd /mnt/c/Users/Diego/Local-Docs/"
+# alias gotodiego="cd /mnt/c/Users/Diego"
+# alias gotovault="cd /mnt/c/Users/Diego/Dropbox/Obsidian_Repo/Starter_Vault"
+# move2vault() {
+#     mv "$1"  /mnt/c/Users/diego/Dropbox/Obsidian_Repo/Starter_Vault/Excalidraw/PDF-Annotation
+#     echo "Moved $1 to your Obsidian vault."
+# }
+# idea() {
+#     /mnt/c/Program\ Files/JetBrains/PyCharm\ 2025.1/bin/pycharm64.exe $1 
+# }
