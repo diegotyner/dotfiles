@@ -39,6 +39,23 @@ vim.keymap.set('n', '<a-j>', ':m .+1<cr>==') -- move line up(n)
 vim.keymap.set('v', '<a-j>', ":m '>+1<cr>gv=gv") -- move line up(v)
 vim.keymap.set('v', '<a-k>', ":m '<-2<cr>gv=gv") -- move line down(v)
 
+local opts = { noremap = true, silent = true }
+-- set of commands to indent with tab
+vim.keymap.set('n', '<Tab>', '>>', opts)
+vim.keymap.set('n', '<S-Tab>', '<<', opts)
+vim.keymap.set('v', '<Tab>', '>gv', opts)
+vim.keymap.set('v', '<S-Tab>', '<gv', opts)
+
+-- Set of commands to copy vscode alt+shift+up/down copy line
+vim.keymap.set('n', '<A-S-Down>', 'yyp', opts)
+vim.keymap.set('n', '<A-S-Up>', 'yyP', opts)
+vim.keymap.set('n', '<A-S-j>', 'yyp', opts)
+vim.keymap.set('n', '<A-S-k>', 'yyP', opts)
+vim.keymap.set('v', '<A-S-Down>', "y'>p`[V", opts)
+vim.keymap.set('v', '<A-S-Up>', 'y`<Pgv', opts)
+vim.keymap.set('v', '<A-S-j>', "y'>p`[V", opts)
+vim.keymap.set('v', '<A-S-k>', 'y`<Pgv', opts)
+
 vim.keymap.set('n', '<M-h>', function()
   if vim.fn.col '.' > 1 then
     vim.cmd 'normal! xhP'
@@ -738,9 +755,17 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-        'prettier', -- For JavaScript/TypeScript formatting
-        'eslint_d', -- For JavaScript/TypeScript linting
+        'lua-language-server', -- Lua LSP
+        'stylua', -- Lua formatter
+        'jdtls', -- Java LSP
+        'pyright', -- Python LSP
+        'prettier', -- JS/TS formatter
+        'eslint_d', --  JS/TS Linter
+        'typescript-language-server', -- Typescript LSP
+        'shfmt', -- Shell formater, bash
+        'ruff', -- Python formatter, replacement for isort and black
+        -- 'black', -- Python Formatter
+        -- 'isort', -- Python Formatter
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -793,12 +818,29 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        python = { 'isort', 'black' }, -- { 'isort', 'black' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        json = { 'prettier' },
+        yaml = { 'prettier' },
+        html = { 'prettier' },
+        css = { 'prettier' },
+        markdown = { 'prettier' },
+        sh = { 'shfmt' }, -- if you choose to install it
+
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
+      -- formatters = {
+      --   ruff_format = {
+      --     inherit = false,
+      --     command = "ruff",
+      --     args = { "format", "--line-length", "120", "-" },
+      --     stdin = true,
+      --   },
     },
   },
 
@@ -1106,7 +1148,7 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',

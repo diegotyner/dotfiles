@@ -1,7 +1,10 @@
 #!/bin/bash
 
-
 SESH="devenv"
+
+if [ -n "$1" ]; then
+  SESH="$1"
+fi
 
 tmux has-session -t $SESH 2>/dev/null
 if [ $? != 0 ]; then
