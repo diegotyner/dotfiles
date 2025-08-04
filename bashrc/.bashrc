@@ -125,6 +125,11 @@ export NVM_DIR="$HOME/.nvm"
 alias syncvault="~/sh-utils/sync_and_push.sh"
 alias rn-dl="~/sh-utils/download-renamer.sh"
 
+mkcd() {
+	mkdir -p "${1}"
+	cd "${1}"
+}
+
 # alias pdf-image="~/sh-utils/pdf-to-img.sh"
 
 alias v="nvim"
@@ -142,6 +147,9 @@ alias gotoai="cd ~/Documents/College_Files/Junior/ECS170"
 alias gotodln="cd ~/Documents/College_Files/Junior/ECS189G"
 alias gotosys="cd ~/Documents/College_Files/Junior/NPB163"
 alias gotodsrd="cd ~/Documents/College_Files/Junior/NPB173"
+
+alias xc="xclip -selection clipboard"
+alias xv="xclip -o"
 
 # Old WSL shortcuts
 # alias gotocode="cd /mnt/c/Users/Diego/OneDrive/Documents/Coding"

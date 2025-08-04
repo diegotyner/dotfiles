@@ -68,6 +68,8 @@ vim.keymap.set('n', '<M-l>', function()
   end
 end, { desc = 'Move char right with boundary checking' })
 
+vim.keymap.set('n', '<leader>e', ':Explore<CR>', { noremap = true, silent = true, desc = 'Open Explorer' })
+
 -- if vim.fn.has 'wsl' == 1 then
 --   vim.g.clipboard = {
 --     name = 'WslClipboard',
@@ -980,6 +982,13 @@ require('lazy').setup({
       vim.cmd 'colorscheme github_dark_tritanopia'
     end,
   },
+  -- Unused Themes
+  -- {
+  --   "L-Colombo/atlantic-dark.nvim",
+  --   name = 'atlantic-dark-theme',
+  --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  --   priority = 1000, -- make sure to load this before all the other start plugins
+  -- },
   -- {
   --   'rose-pine/neovim',
   --   name = 'rose-pine',
