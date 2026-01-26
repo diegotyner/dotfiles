@@ -121,9 +121,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # My additions
+# . "$HOME/.cargo/env"
 
 alias syncvault="~/sh-utils/sync_and_push.sh"
 alias rn-dl="~/sh-utils/download-renamer.sh"
+stty -ixon # Makes C-s not freeze terminal, NEEDED for tmux leader remap
+alias devenv="~/sh-utils/tmux_setup.sh"
+alias tmux-session="~/sh-utils/tmux-session.sh"
+alias git-quickpush="~/sh-utils/git-quickpush.sh"
 
 mkcd() {
 	mkdir -p "${1}"
@@ -136,10 +141,6 @@ alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 
-stty -ixon # Makes C-s not freeze terminal, NEEDED for tmux leader remap
-alias devenv="~/sh-utils/tmux_setup.sh"
-# . "$HOME/.cargo/env"
-
 # Navigation
 alias gotocode="cd ~/Coding"
 alias gotodocs="cd ~/Documents"
@@ -147,6 +148,10 @@ alias gotoai="cd ~/Documents/College_Files/Junior/ECS170"
 alias gotodln="cd ~/Documents/College_Files/Junior/ECS189G"
 alias gotosys="cd ~/Documents/College_Files/Junior/NPB163"
 alias gotodsrd="cd ~/Documents/College_Files/Junior/NPB173"
+alias gotoos="cd ~/Documents/College_Files/Senior/ECS150/"
+alias gotoswe="cd ~/Documents/College_Files/Senior/ECS160/"
+
+alias codeos="cd ~/Coding/Classes/Winter26/ECS150/"
 
 alias xc="xclip -selection clipboard"
 alias xv="xclip -o"
@@ -163,3 +168,4 @@ alias xv="xclip -o"
 # idea() {
 #     /mnt/c/Program\ Files/JetBrains/PyCharm\ 2025.1/bin/pycharm64.exe $1
 # }
+PATH=/usr/local/go/bin:$PATH
