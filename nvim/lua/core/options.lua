@@ -43,6 +43,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+if vim.fn.has("termguicolors") == 1 then
+	vim.opt.termguicolors = true
+end
+
 -- vim.env.path = '/home/diego/.nvm/versions/node/v22.14.0/bin:/home/diego/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
 -- if vim.fn.has 'wsl' == 1 then

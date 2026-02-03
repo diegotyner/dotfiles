@@ -1,0 +1,117 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# [  ](bg:apple_white fg:#090c0c)\
+
+format = """
+[░▒▓](apple_white)\
+[](bg:bg_dir fg:fg_dir)\
+$directory\
+[](fg:bg_dir bg:mid_gray)\
+$git_branch\
+$git_status\
+[](fg:mid_gray bg:dark_gray)\
+$c\
+$cpp\
+$golang\
+$java\
+$nodejs\
+$php\
+$python\
+$rust\
+[](fg:dark_gray bg:time_bg)\
+$time\
+[ ](fg:time_bg)\
+$cmd_duration\
+$memory_usage\
+\n$character"""
+
+palette = "tokyonight_edit"
+
+[palettes.tokyonight_edit]
+apple_white = "#a3aed2"
+bg_dir = "#2b3c8f"
+fg_dir = "#b8b8b8"
+mid_gray = "#394260"
+dark_gray = "#212736"
+time_bg = "#1d2230"
+
+[memory_usage]
+disabled = false
+threshold = 75
+format = "󰍛 $percentage "
+style = "bg:dark_gray fg:red"
+
+[cmd_duration]
+show_milliseconds = true
+format = " in $duration "
+style = "bg:lavender"
+disabled = false
+show_notifications = true
+min_time_to_notify = 45000
+
+[directory]
+style = "fg:fg_dir bg:bg_dir"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+style = "bg:mid_gray"
+format = '[[ $symbol $branch ](fg:#769ff0 bg:mid_gray)]($style)'
+
+[git_status]
+style = "bg:mid_gray"
+format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:mid_gray)]($style)'
+
+[c]
+symbol = ""
+style = "bg:dark_gray"
+format = '[[ $symbol ](fg:#769ff0 bg:dark_gray)]($style)'
+
+[cpp]
+symbol = ""
+style = "bg:dark_gray"
+format = '[[ $symbol ](fg:#769ff0 bg:dark_gray)]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:dark_gray"
+format = '[[ $symbol ](fg:#769ff0 bg:dark_gray)]($style)'
+
+[python]
+symbol = ""
+style = "bg:dark_gray"
+format = '[[ $symbol ](fg:#769ff0 bg:dark_gray)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:dark_gray"
+format = '[[ $symbol ](fg:#769ff0 bg:dark_gray)]($style)'
+
+[java]
+symbol = ""
+style = "bg:dark_gray"
+format = '[[ $symbol ](fg:#769ff0 bg:dark_gray)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:dark_gray"
+format = '[[ $symbol ](fg:#769ff0 bg:dark_gray)]($style)'
+
+[php]
+symbol = ""
+style = "bg:dark_gray"
+format = '[[ $symbol ](fg:#769ff0 bg:dark_gray)]($style)'
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:time_bg"
+format = '[[  $time ](fg:#a0a9cb bg:time_bg)]($style)'

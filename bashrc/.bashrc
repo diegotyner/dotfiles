@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
 	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -121,7 +121,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # My additions
-# . "$HOME/.cargo/env"
+. "$HOME/.cargo/env"
 
 alias syncvault="~/sh-utils/sync_and_push.sh"
 alias rn-dl="~/sh-utils/download-renamer.sh"
@@ -144,14 +144,17 @@ alias vim="nvim"
 # Navigation
 alias gotocode="cd ~/Coding"
 alias gotodocs="cd ~/Documents"
-alias gotoai="cd ~/Documents/College_Files/Junior/ECS170"
-alias gotodln="cd ~/Documents/College_Files/Junior/ECS189G"
-alias gotosys="cd ~/Documents/College_Files/Junior/NPB163"
-alias gotodsrd="cd ~/Documents/College_Files/Junior/NPB173"
+# alias gotoai="cd ~/Documents/College_Files/Junior/ECS170"
+# alias gotodln="cd ~/Documents/College_Files/Junior/ECS189G"
+# alias gotosys="cd ~/Documents/College_Files/Junior/NPB163"
+# alias gotodsrd="cd ~/Documents/College_Files/Junior/NPB173"
 alias gotoos="cd ~/Documents/College_Files/Senior/ECS150/"
 alias gotoswe="cd ~/Documents/College_Files/Senior/ECS160/"
+alias gotoalg="cd ~/Documents/College_Files/Senior/ECS122B/"
+alias gotobml="cd ~/Documents/College_Files/Senior/NPB136/"
 
 alias codeos="cd ~/Coding/Classes/Winter26/ECS150/"
+alias codeswe="cd ~/Coding/Classes/Winter26/ECS160/"
 
 alias xc="xclip -selection clipboard"
 alias xv="xclip -o"
@@ -169,3 +172,4 @@ alias xv="xclip -o"
 #     /mnt/c/Program\ Files/JetBrains/PyCharm\ 2025.1/bin/pycharm64.exe $1
 # }
 PATH=/usr/local/go/bin:$PATH
+eval "$(starship init bash)"
