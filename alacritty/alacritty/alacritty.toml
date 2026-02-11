@@ -1,3 +1,5 @@
+# [terminal.shell] # Windows Specific Lines
+# program = "C:\\Windows\\System32\\wsl.exe"
 
 [window]
 padding = { x = 10, y = 10 }
