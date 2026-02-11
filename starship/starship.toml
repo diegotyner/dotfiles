@@ -88,7 +88,7 @@ format = '[[ $symbol ](fg:#769ff0 bg:dark_gray)]($style)'
 [python]
 symbol = ""
 style = "bg:dark_gray"
-format = '[[ $symbol ](fg:#769ff0 bg:dark_gray)]($style)'
+format = '[[ $symbol ${virtualenv}](fg:#769ff0 bg:dark_gray)]($style)'
 
 [rust]
 symbol = ""

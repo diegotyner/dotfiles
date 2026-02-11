@@ -43,6 +43,7 @@ vim.keymap.set("n", "<M-l>", function()
 end, { desc = "Move char right with boundary checking" })
 
 vim.keymap.set("n", "<leader>e", ":Explore<CR>", { noremap = true, silent = true, desc = "Open Explorer" })
+vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true, desc = "Save" })
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
@@ -53,3 +54,6 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Adding a "Copy all" hotkey
+vim.keymap.set({ "n", "v" }, "VV", ":%y+<CR>", { noremap = true, silent = true, desc = "Copy all to clipboard" })
