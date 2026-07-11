@@ -14,7 +14,7 @@ normal = { family = "JetBrainsMono NF", style = "Regular" }
 size = 9
 
 [env]
-TERM = "alacritty" # exports default name for apps like tmux and nvim to work
+TERM = "xterm-256color" # exports default name for apps like tmux and nvim to work
 
 [keyboard]
 # Makes it so C-BS deletes word in nvim
