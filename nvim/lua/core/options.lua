@@ -16,6 +16,7 @@ end)
 vim.opt.showmatch = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.breakindent = true -- Enable break indent
 vim.opt.undofile = true -- Save undo history
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term

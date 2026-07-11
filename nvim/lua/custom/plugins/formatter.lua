@@ -30,7 +30,7 @@ return { -- Autoformat
 		end,
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "isort", "black" }, -- { 'isort', 'black' },
+			python = { "ruff_format" }, -- { 'isort', 'black' },
 			javascript = { "prettier" },
 			typescript = { "prettier" },
 			json = { "prettier" },
