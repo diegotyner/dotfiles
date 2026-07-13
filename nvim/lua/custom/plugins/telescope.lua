@@ -52,6 +52,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 			--   },
 			-- },
+			defaults = { file_ignore_patterns = { "node_modules" } },
 			pickers = {
 				colorscheme = {
 					enable_preview = true,

@@ -24,7 +24,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
 vim.opt.updatetime = 250 -- Decrease update time
-vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time
+vim.opt.timeoutlen = 250 -- Decrease mapped sequence wait time
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.list = true -- Sets how neovim will display certain whitespace characters
@@ -50,6 +50,7 @@ end
 
 -- vim.env.path = '/home/diego/.nvm/versions/node/v22.14.0/bin:/home/diego/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
+-- -- turned off because it causes a really annoying buffe rwhen copy pasting :(
 -- if vim.fn.has 'wsl' == 1 then
 --   vim.g.clipboard = {
 --     name = 'WslClipboard',

@@ -1,4 +1,7 @@
-# [terminal.shell] # Windows Specific Lines
+### Windows Specific Lines
+# [general]
+# working_directory = "C:\\Users\\diego"
+# [terminal.shell]
 # program = "C:\\Windows\\System32\\wsl.exe"
 
 [window]
@@ -11,6 +14,8 @@ opacity = 1.00
 normal = { family = "JetBrainsMono NF", style = "Regular" }
 # normal = { family = "IosevkaTerm NFM", style = "Regular" }
 # normal = { family = "Monaspace Neon NF", style = "Regular" }
+
+# normal = { family = "JetBrainsMono Nerd Font", style = "Regular" } # windows specific
 size = 9
 
 [env]

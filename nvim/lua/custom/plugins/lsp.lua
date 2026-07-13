@@ -288,7 +288,7 @@ return {
 				"ruff", -- Python formatter, replacement for isort and black
 				-- 'black', -- Python Formatter
 				-- 'isort', -- Python Formatter
-				"gopls", -- Go lsp
+				-- "gopls", -- Go lsp
 				"vue-language-server", -- vue lsp
 				"clangd", -- C lsp
 				"clang-format", -- c formatter

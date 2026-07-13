@@ -1,0 +1,43 @@
+-- lua/custom/plugins/neocodeium.lua
+
+return {
+	"monkoose/neocodeium",
+	event = "VeryLazy",
+	config = function()
+		local neocodeium = require("neocodeium")
+		local blink = require("blink.cmp")
+		neocodeium.setup({
+			manual = false, -- recommended to be false to not fight with blink
+			filter = function() -- Makes it not recommend while blink active
+				return not blink.is_visible()
+			end,
+			filetypes = { -- Disables reqs on telescope and dap prompt
+				TelescopePrompt = false,
+				["dap-repl"] = false,
+			},
+		})
+
+		vim.api.nvim_create_autocmd("User", { -- Needed for blink
+			pattern = "BlinkCmpMenuOpen",
+			callback = function()
+				neocodeium.clear()
+			end,
+		})
+
+		vim.keymap.set("i", "<A-e>", function()
+			neocodeium.cycle_or_complete()
+		end, { desc = "AI: trigger/cycle suggestion" })
+		vim.keymap.set("i", "<A-f>", function()
+			neocodeium.accept()
+		end, { desc = "AI: accept suggestion" })
+		vim.keymap.set("i", "<A-w>", function()
+			neocodeium.accept_word()
+		end, { desc = "AI: accept one word" })
+		vim.keymap.set("i", "<A-l>", function()
+			neocodeium.accept_line()
+		end, { desc = "AI: accept one line" })
+		vim.keymap.set("i", "<A-c>", function()
+			neocodeium.clear()
+		end, { desc = "AI: dismiss suggestion" })
+	end,
+}
