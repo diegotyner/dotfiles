@@ -179,3 +179,7 @@ LS_COLORS=$LS_COLORS:'ow=1;34:'
 export LS_COLORS
 
 eval "$(starship init bash)"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/diego/.local/bin:$PATH"
