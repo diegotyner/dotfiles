@@ -1,5 +1,7 @@
 -- Refactoring init.lua, putting kickstart opts here
 
+vim.cmd.colorscheme("desert")
+
 vim.g.have_nerd_font = true
 vim.g.netrw_browsex_viewer = ""
 vim.opt.number = true -- Make line numbers default

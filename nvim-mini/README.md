@@ -4,16 +4,23 @@ This is a minimal config for when I'm ssh'd into a machine for long enough to wa
 
 # Installation
 
+One liner, requires sudo however
+
 ```
 # Download latest neovim release from GitHub releases and pipe it to tar to extract it to /usr
 curl -sL https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz \
 | sudo tar -xzf - --strip-components=1 --overwrite -C /usr
+```
+
+Multiple lines, but can be ran be unpriveledged user
+
+```
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+tar xzf nvim-linux-x86_64.tar.gz
 mv nvim-linux-x86_64 ~/.local/nvim
 ln -s ~/.local/nvim/bin/nvim ~/.local/bin/nvim
 # make sure ~/.local/bin is on your PATH
 ```
-
-# or this ? https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 
 # config linking
 

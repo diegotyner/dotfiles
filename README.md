@@ -5,6 +5,7 @@ This is a repo to back up my dotfiles.
 Included:
 
 - neovim config
+- A minimal neovim config for ssh sessions (nvim-mini)
 - .bashrc
 - .tmux.config
 - personal sh-utils
