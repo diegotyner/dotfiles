@@ -172,7 +172,8 @@ alias xv="xclip -o"
 # idea() {
 #     /mnt/c/Program\ Files/JetBrains/PyCharm\ 2025.1/bin/pycharm64.exe $1
 # }
-PATH=/usr/local/go/bin:$PATH
+PATH="/usr/local/go/bin:$PATH"
+PATH="$PATH:$(go env GOPATH)/bin"
 
 # This makes wsl not god ugy when showing windows folders
 LS_COLORS=$LS_COLORS:'ow=1;34:'
@@ -180,6 +181,8 @@ export LS_COLORS
 
 eval "$(starship init bash)"
 
-
 # Added by Antigravity CLI installer
 export PATH="/home/diego/.local/bin:$PATH"
+
+# export editor
+export EDITOR='nvim'

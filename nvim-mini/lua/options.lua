@@ -7,12 +7,6 @@ vim.opt.relativenumber = true
 vim.opt.mouse = "a" -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
 
--- Sync clipboard between OS and Neovim.
---  See `:help 'clipboard'`
-vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
-end)
-
 vim.opt.showmatch = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -48,20 +42,17 @@ if vim.fn.has("termguicolors") == 1 then
 	vim.opt.termguicolors = true
 end
 
--- vim.env.path = '/home/diego/.nvm/versions/node/v22.14.0/bin:/home/diego/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-
--- -- turned off because it causes a really annoying buffe rwhen copy pasting :(
--- if vim.fn.has 'wsl' == 1 then
---   vim.g.clipboard = {
---     name = 'WslClipboard',
---     copy = {
---       ['+'] = 'clip.exe',
---       ['*'] = 'clip.exe',
---     },
---     paste = {
---       ['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
---       ['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
---     },
---     cache_enabled = 0,
---   }
--- end
+-- OSC52 clipboard: lets yank/paste work over SSH without a system clipboard,
+-- by sending the terminal an escape sequence your local terminal intercepts.
+-- Requires Neovim 0.10+ and a terminal that supports OSC52 (most modern ones do).
+vim.g.clipboard = {
+	name = "OSC 52",
+	copy = {
+		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+	},
+	paste = {
+		["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+		["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+	},
+}
