@@ -6,7 +6,7 @@
 
 [window]
 padding = { x = 10, y = 10 }
-opacity = 1.00 
+opacity = 1.00
 
 [font]
 normal = { family = "FiraMono Nerd Font", style = "Regular" }
@@ -33,3 +33,8 @@ background = "#040214" # a very dark (black) blue
 green   = "#398201"
 blue = "#268BD2"
 red = "#DC322F"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

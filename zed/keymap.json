@@ -1,0 +1,108 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "ctrl-alt-[": "workspace::ToggleLeftDock",
+      "ctrl-alt-]": "workspace::ToggleRightDock",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushAddSurrounds"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "shift-h": "vim::WindowTop",
+      "s": "vim::Substitute"
+    },
+    "bindings": {
+      "shift-l": "vim::EndOfLine",
+      "shift-h": "vim::FirstNonWhitespace",
+      "tab": "vim::Indent",
+      "shift-tab": "vim::Outdent",
+      "space w": "workspace::Save",
+      "space q": "editor::GoToDiagnostic",
+      "space e": "vim::ToggleProjectPanelFocus",
+      "space f": "file_finder::Toggle",
+      "shift-y": ["workspace::SendKeystrokes", "y $"],
+    }
+  },
+  {
+    "context": "Editor && !menu",
+    "bindings": {
+      "ctrl-f": "buffer_search::Deploy",      // vim default: page down
+      "ctrl-c": "editor::Copy",               // vim default: return to normal mode
+      "ctrl-x": "editor::Cut",                // vim default: decrement
+      "ctrl-v": "editor::Paste",              // vim default: visual block mode
+      "ctrl-y": "editor::Undo",               // vim default: line up
+      "ctrl-t": "project_symbols::Toggle",    // vim default: go to older tag
+      "ctrl-s": "workspace::Save",            // vim default: show signature
+      "ctrl-b": "workspace::ToggleLeftDock",   // vim default: down
+      // "ctrl-a": "editor::SelectAll",          // vim default: increment
+      "ctrl-a": ["workspace::SendKeystrokes", ": % y enter"],
+      // "ctrl-w": "pane::CloseActiveItem",
+
+      // Vim like
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+      "alt-k": "editor::MoveLineUp",
+      "alt-j": "editor::MoveLineDown",
+      "alt-shift-k": "editor::DuplicateLineUp",
+      "alt-shift-j": "editor::DuplicateLineDown",
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "unbind": {
+      "ctrl-w": [
+        "editor::DeleteToPreviousWordStart",
+        {
+          "ignore_newlines": false,
+          "ignore_brackets": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "vim_mode == literal",
+    "unbind": {
+      "ctrl-w": [
+        "vim::Literal",
+        [
+          "ctrl-w",
+          "\u0017"
+        ]
+      ]
+    }
+  },
+  {
+    "context": "Picker > Editor",
+    "unbind": {
+      "ctrl-w": "editor::DeleteToPreviousWordStart"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-w t": "terminal_panel::ToggleFocus",
+      "ctrl-w k": "terminal_panel::ToggleFocus"
+    }
+  }
+]
