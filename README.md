@@ -4,12 +4,14 @@ This is a repo to back up my dotfiles.
 
 Included:
 
-- neovim config
-- A minimal neovim config for ssh sessions (nvim-mini)
+- alacritty conig
 - .bashrc
-- .tmux.config
+- A minimal neovim config for ssh sessions (nvim-mini)
+- neovim config
 - personal sh-utils
+- .tmux.config
 - starship theme
+- zed settings + keymaps
 
 The following are not live, and are snapshots from 4/25/2025
 
