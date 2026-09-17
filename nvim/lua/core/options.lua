@@ -48,9 +48,16 @@ if vim.fn.has("termguicolors") == 1 then
 	vim.opt.termguicolors = true
 end
 
+-- Enable autoread and set up checking triggers
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+	command = "if mode() != 'c' | checktime | endif",
+	pattern = "*",
+})
+
 -- vim.env.path = '/home/diego/.nvm/versions/node/v22.14.0/bin:/home/diego/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
--- -- turned off because it causes a really annoying buffe rwhen copy pasting :(
+-- -- turned off because it causes a really annoying buffer when copy pasting :(
 -- if vim.fn.has 'wsl' == 1 then
 --   vim.g.clipboard = {
 --     name = 'WslClipboard',
