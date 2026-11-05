@@ -21,11 +21,6 @@ size = 9
 [env]
 TERM = "xterm-256color" # exports default name for apps like tmux and nvim to work
 
-[keyboard]
-# Makes it so C-BS deletes word in nvim
-bindings = [{ key = "Back", mods = "Control", chars = "\x17" },] # /x17 == C-w
-
-
 [colors.primary]
 background = "#040214" # a very dark (black) blue
 
@@ -33,6 +28,11 @@ background = "#040214" # a very dark (black) blue
 green   = "#398201"
 blue = "#268BD2"
 red = "#DC322F"
+
+[[keyboard.bindings]] # Makes it so C-BS deletes word in nvim
+key = "Back"
+mods = "Control"
+chars = "\x17"
 
 [[keyboard.bindings]]
 key = "Return"
